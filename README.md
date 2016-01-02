@@ -1,4 +1,3 @@
-# ChadsThings
-OpenScad projects for 3-d printing
+# Luxos light mount
 
-All the interesting stuff is in the branches.
+Fits around steerer-spacer
