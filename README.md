@@ -1,3 +1,3 @@
-# Fender clips
+# NFE
 
-Generic (not bike specific) mounting hardware for bike fenders
+Fender stuff for Elephant NFE
