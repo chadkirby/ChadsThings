@@ -1,4 +1,3 @@
-# ChadsThings
-OpenScad projects for 3-d printing
+# Fender clips
 
-All the interesting stuff is in the branches.
+Generic (not bike specific) mounting hardware for bike fenders
