@@ -4,13 +4,13 @@ rake = 65;
 forkLen = 325;
 rakeOffsetAngle = 1 * (90 - atan(forkLen/rake));
 
-forkHoleD = 22.8;
+forkHoleD = 23.3;
 big = 100;
 module forkMount(args) {
     rotate([0, 1*rakeOffsetAngle, 0]) difference() {
         translate([0,0,25-30])
             cylinder(d=forkHoleD, h=30, center=true);
-        cylinder(d=19, h=27, center=true); // aluminum insert
+        cylinder(d=19.5, h=27, center=true); // aluminum insert
         cylinder(d=6, h=100, center=true); // fender bolt hole
         rotate([0,90,0])
             cylinder(d=6, h=big, center=true); // fork crown bolt hole
