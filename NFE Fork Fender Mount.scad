@@ -24,9 +24,9 @@ module forkMount(args) {
         intersection() {
             difference() {
                 cylinder(r=100, h=100, center=true);
-                cylinder(d=forkHoleD - 1, h=100, center=true);
+                cylinder(d=forkHoleD - 1.5, h=100, center=true);
             }
-            rotate([0,-70,-35]) translate([50,0,0]) cube(size=[100, 3, 100], center=true);
+            rotate([0,-90,147]) translate([45,0,50]) cube(size=[100, 5, 100], center=true);
 
         }
 
