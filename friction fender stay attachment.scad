@@ -1,8 +1,11 @@
-stayAngle = asin(40/(11*25.4)); // rear
+stayAngle = asin((150 - 60)/355); // rear
 // stayAngle = 0; // front
+$fs = 1;
+$fa = 6;
 
-len = 20;
+len = 30;
 wid = 10;
+stayD = 4.7;
 offset = -tan(stayAngle) * len;
 smoffset = sin(stayAngle) * wid;
 module squaredCircle(len, rot=[0,0,0], $fn=12) {
@@ -10,28 +13,31 @@ module squaredCircle(len, rot=[0,0,0], $fn=12) {
         rotate(rot) cylinder(d=wid/cos(180/$fn), h=len, center=false, $fn=$fn);
     }
 }
-intersection() {
+rotate([90,0,0]) intersection() {
 
     union() {
-        rotate([stayAngle,0,0]) difference() {
-            hull() {
-                rotate([0,0,180/8]) cylinder(d=wid/cos(180/8), h=len, center=false, $fn=8);
-                rotate([-stayAngle,0,0]) translate([0, offset, 1-smoffset/2]) rotate([0,0,180/8]) cylinder(d=wid/cos(180/8), h=len-1, center=false, $fn=8);
+        difference() {
+            rotate([stayAngle,0,0]) difference() {
+                rotate([0,0,180/8]) cylinder(d1=wid, d2=(stayD + 3), h=len, center=false);
+                translate([0, 0, 9]) cylinder(d=stayD, h=len+1, center=false, $fn=12);
+
             }
-            cylinder(d=4.7, h=len+1, center=false, $fn=12);
+            translate([0,-wid/4 - 5,-(wid+4)/2]) rotate([90]) cylinder(d=wid+4, h=10, center=true);
+
         }
 
 
-        translate([0,0,-2]) {
+        translate([0,2,-2]) {
             difference() {
                 hull() {
-                    translate([0,0,2]) rotate([stayAngle,0,0]) squaredCircle(1, [0,0,180/8], 8);
+                    translate([0,-2,2]) rotate([stayAngle,0,0]) cylinder(d=wid, h=1, center=false);;
                     translate([0,-wid/4,-wid/2]) rotate([90,0,0]) cylinder(d=wid+4, h=wid/2, center=true);
                 }
                 translate([0,-wid/4,-wid/2]) rotate([90,0,0]) {
                     cylinder(d=6, h=25, center=true);
                     rotate([0,180,0]) cylinder(d=11, h=wid, center=false);
                 }
+                translate([0,-wid/4 - 7,-wid/2]) rotate([90]) cylinder(d=wid+4, h=10, center=true);
             }
         }
     }
