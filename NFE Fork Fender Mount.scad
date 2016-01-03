@@ -10,7 +10,7 @@ module forkMount(args) {
     rotate([0, 1*rakeOffsetAngle, 0]) difference() {
         translate([0,0,25-30])
             cylinder(d=forkHoleD, h=30, center=true);
-        cylinder(d=19.5, h=27, center=true); // aluminum insert
+        cylinder(d=20, h=27, center=true); // aluminum insert
         cylinder(d=6, h=100, center=true); // fender bolt hole
         rotate([0,90,0])
             cylinder(d=6, h=big, center=true); // fork crown bolt hole
@@ -20,6 +20,15 @@ module forkMount(args) {
         rotate([0, -rakeOffsetAngle, 0])
             translate([0, 0, -forkLen - 16])
                 cube([2*forkLen, 60, 2*forkLen], center=true);
+
+        intersection() {
+            difference() {
+                cylinder(r=100, h=100, center=true);
+                cylinder(d=forkHoleD - 1, h=100, center=true);
+            }
+            rotate([0,-70,-35]) translate([50,0,0]) cube(size=[100, 3, 100], center=true);
+
+        }
 
         // sanity check: show the fender circle based on translation to make
         // sure our rotation is correct
