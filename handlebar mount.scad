@@ -4,7 +4,7 @@ thick = 2.5;
 width = 12;
 direction = -1;
 armThickness = 12;
-desiredGapBetwComputerAndHandlebar = 6;
+desiredGapBetwComputerAndHandlebar = 8;
 computerDims = [12, 62, 42];
 offsetFromHandlebar = computerDims[1]/2 + desiredGapBetwComputerAndHandlebar;
 mountY = offsetFromHandlebar + handleBarD/2;
@@ -90,8 +90,8 @@ module screws() {
     rotate([0, direction == 1 ? 0 : 180, 0]) translateScrew(1) m4PanHeadScrew(10);
     rotateFastener() rotate([0, 180, 0]) translateScrew(-1) m4PanHeadScrew(10);
 
-    moveToIntermediate() rotate([-30, 0, 0]) rotate([0, 0, 180/6]) translate([direction * 1.5, 0, 1]) m4ButtonScrew(4.5);
-    translate([0, 0, 0]) moveToFar() rotate([30, 0, 0]) rotate([0, 0, 180/6]) translate([direction * 1.5, 0, 1]) m4ButtonScrew(4.5);
+    moveToIntermediate() rotate([-30, 0, 0]) rotate([0, 0, 180/6]) translate([0, 0, 1]) m4ButtonScrew(4.5);
+    translate([0, 0, 0]) moveToFar() rotate([30, 0, 0]) rotate([0, 0, 180/6]) translate([0, 0, 1]) m4ButtonScrew(4.5);
 }
 module ring() {
     hull() {
@@ -159,13 +159,14 @@ module doveTail(inflate = 0) {
     }
 }
 module holderAssembly() {
-    difference() {
-        outerShell();
-        moveAndRotateToOuter() bodyCutouts();
-        screws();
+    translate([direction * -1.5, 0, 0]) {
+        difference() {
+            outerShell();
+            moveAndRotateToOuter() bodyCutouts();
+            translate([direction * 1.5, 0, 0])screws();
+        }
+        moveAndRotateToOuter() bodyAdditions();
     }
-    moveAndRotateToOuter() bodyAdditions();
-    *doveTail();
 }
 module outerHolder() {
     moveAndRotateToOuter() holderBody();
