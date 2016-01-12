@@ -4,11 +4,11 @@ rake = 65;
 forkLen = 325;
 rakeOffsetAngle = 1 * (90 - atan(forkLen/rake));
 
-forkHoleD = 20;
+forkHoleD = 22;
 big = 100;
 module boltCutouts() {
     translate([-2, 0, 5]) rotate([0, -rakeOffsetAngle, 0]) {
-        cylinder(d=8.5/cos(180/6), $fn=6, h=25, center=true); // aluminum insert
+        cylinder(d=8.25/cos(180/6), $fn=6, h=25, center=true); // aluminum insert
         cylinder(d=6, h=100, center=true); // fender bolt hole
     }
 }
@@ -27,8 +27,8 @@ module forkMount(args) {
         union () {
             translate([0,0,-20])
                 cylinder(d=forkHoleD, h=25, center=false);
-                translate([0,0,-14.5])
-                    cylinder(d=30, h=2, center=false);
+            translate([0,0,-19.5])
+                cylinder(d=30, h=7, center=false);
         }
         scale([1.01, 1.01, 18/16]) hull() forkInsert();
         boltCutouts();
