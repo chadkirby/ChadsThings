@@ -4,7 +4,7 @@ rake = 65;
 forkLen = 325;
 rakeOffsetAngle = 1 * (90 - atan(forkLen/rake));
 
-forkHoleD = 22;
+forkHoleD = 23;
 big = 100;
 module boltCutouts() {
     translate([-2, 0, 5]) rotate([0, -rakeOffsetAngle, 0]) {
@@ -14,18 +14,18 @@ module boltCutouts() {
 }
 module forkInsert() {
     difference() {
-        translate([0,0,-10])
-            cylinder(d=forkHoleD, h=16, center=false);
+        translate([0,0,-10]) rotate([0,0,180/8])
+            cylinder(d=forkHoleD, $fn=8, h=17, center=false);
         boltCutouts();
         rotate([0,90,0])
-            cylinder(d=6, h=big, center=true); // fork crown bolt hole
+            cylinder(d=7, h=big, center=true); // fork crown bolt hole
     }
 }
-translate([30, 0, -6]) forkInsert();
+translate([30, 0, -5]) rotate([0, 90, 0]) forkInsert();
 module forkMount(args) {
     rotate([0, 1*rakeOffsetAngle, 0]) difference() {
         union () {
-            translate([0,0,-20])
+            *translate([0,0,-20])
                 cylinder(d=forkHoleD, h=25, center=false);
             translate([0,0,-19.5])
                 cylinder(d=30, h=7, center=false);
