@@ -14,14 +14,15 @@ module boltCutouts() {
 }
 module forkInsert() {
     difference() {
-        translate([0,0,-10]) rotate([0,0,180/8])
-            cylinder(d=forkHoleD, $fn=8, h=17, center=false);
+        translate([0,0,-11]) rotate([0,0,180/8])
+            cylinder(d=forkHoleD, $fn=8, h=18, center=false);
         boltCutouts();
         rotate([0,90,0])
             cylinder(d=7, h=big, center=true); // fork crown bolt hole
     }
 }
-translate([30, 0, -5]) rotate([0, 90, 0]) forkInsert();
+translate([30, 0, -5]) rotate([0, 90, 0])
+forkInsert();
 module forkMount(args) {
     rotate([0, 1*rakeOffsetAngle, 0]) difference() {
         union () {
