@@ -7,7 +7,7 @@ rakeOffsetAngle = 1 * (90 - atan(forkLen/rake));
 forkHoleD = 23;
 big = 100;
 module boltCutouts() {
-    translate([-2, 0, 5]) rotate([0, -rakeOffsetAngle, 0]) {
+    translate([-2, 0, 4]) rotate([0, -rakeOffsetAngle, 0]) {
         cylinder(d=8.25/cos(180/6), $fn=6, h=25, center=true); // aluminum insert
         cylinder(d=6, h=100, center=true); // fender bolt hole
     }
