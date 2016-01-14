@@ -12,6 +12,9 @@ module boltCutouts() {
         cylinder(d=6, h=100, center=true); // fender bolt hole
     }
 }
+module key(d) {
+    translate([7+d/2,0,-11]) cylinder(d=d, h=6, center=true);
+}
 module forkInsert() {
     difference() {
         translate([0,0,-11]) rotate([0,0,180/8])
@@ -19,9 +22,10 @@ module forkInsert() {
         boltCutouts();
         rotate([0,90,0])
             cylinder(d=7, h=big, center=true); // fork crown bolt hole
+        translate([0,0,2]) key(5);
     }
 }
-translate([30, 0, -5]) rotate([0, 90, 0])
+translate([30, 0, -5]) rotate([0, -90, 0])
 forkInsert();
 module forkMount(args) {
     rotate([0, 1*rakeOffsetAngle, 0]) difference() {
@@ -30,8 +34,8 @@ module forkMount(args) {
                 cylinder(d=forkHoleD, h=25, center=false);
             translate([0,0,-19.5])
                 cylinder(d=30, h=7, center=false);
+            key(4);
         }
-        scale([1.01, 1.01, 18/16]) hull() forkInsert();
         boltCutouts();
         // make a cube whose top surface is parallel to the bottom of the fork crown
         // then rotate it so that the top surface is tangent to the fender circle
