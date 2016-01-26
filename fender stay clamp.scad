@@ -4,7 +4,7 @@ direction = -1; // 1, 0, or -1
 stayAngle = direction * asin(30/(13*25.4)); // rear
 stayAngle = 0; // front
 
-thick = 2;
+thick = 1.5;
 stayD = 5.2;
 boltD = 6.2;
 boltHeadD = 11;
