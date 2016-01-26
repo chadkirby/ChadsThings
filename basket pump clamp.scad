@@ -39,7 +39,11 @@ insertOffset = 38;
 wid = 15;
 hgt = 3;
 
-base();
+rotate([90,-5]) intersection() {
+    base();
+    translate([0,-4]) rotate([0,0,5]) cube(size=[100, len, 100], center=true);
+    translate([0,4]) rotate([0,0,-5]) cube(size=[100, len, 100], center=true);
+}
 zipD = 33;
 module zip(args) {
     rotate([90,0,0]) difference() {
@@ -54,15 +58,17 @@ module base() {
 	difference() {
 		union() {
 			hull() {
-				translate([0,0,hgt/2]) cube(size=[insertD, len, hgt], center=true);
+                translate([insertD/2 - 2, 0, hgt/2]) _ry() cylinder(d=hgt, h=len, center=true);
+                translate([-insertD/2, 0, hgt/2]) _ry() cylinder(d=hgt, h=len, center=true);
+
 				moveToPump() _ry() cylinder(d=5, h=len, center=true);
 			}
-			moveToPump() _ry() rotate([0,0,-45]) _arcOfCyl(arc = 225, d=5+pumpD, h=len, center=true);
+			moveToPump() _ry() rotate([0,0,-45]) _arcOfCyl(arc = 235, d=5+pumpD, h=len, center=true);
 		}
-		// zip tie
+		// velcro tie
 		moveToPump() _ry() {
 			difference() {
-				cylinder(r=6+pumpD/2, h=24, center=true);
+				cylinder(r=6+pumpD/2, h=20, center=true);
 				cylinder(r=3.5+pumpD/2, h=25, center=true);
 			}
 		}
