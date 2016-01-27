@@ -9,7 +9,10 @@ stayD = 5.2;
 boltD = 6.2;
 boltHeadD = 11;
 tall = 12;
-post = 6;
+post = 4;
+
+$fs = 1;
+$fa = 6;
 
 module bolt() {
     cylinder(d=boltD, h=20, center=false);
