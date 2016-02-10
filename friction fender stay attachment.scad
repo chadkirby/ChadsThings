@@ -6,6 +6,7 @@ $fa = 6;
 len = 30;
 wid = 10;
 stayD = 4.7;
+stayD = 25.4/4;
 offset = -tan(stayAngle) * len;
 smoffset = sin(stayAngle) * wid;
 module squaredCircle(len, rot=[0,0,0], $fn=12) {

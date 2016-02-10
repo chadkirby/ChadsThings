@@ -5,7 +5,7 @@ $fa = 6;
 
 len = 30;
 wid = 10;
-stayD = 4.7;
+//stayD = 4.7;
 stayD = 25.4/4;
 offset = -tan(stayAngle) * len;
 smoffset = sin(stayAngle) * wid;
@@ -14,10 +14,10 @@ module squaredCircle(len, rot=[0,0,0], $fn=12) {
         rotate(rot) cylinder(d=wid/cos(180/$fn), h=len, center=false, $fn=$fn);
     }
 }
-module stayThru() {
-    translate([0,2.5,0]) rotate([stayAngle,0,0]) translate([0, 0, -4]) cylinder(d=stayD, h=len+5, center=false, $fn=12);
+module stayThru(l = len + 5, center=false, stayAngle = stayAngle) {
+    translate([0,2.5,0]) rotate([stayAngle,0,0]) translate([0, 0, -4]) cylinder(d=stayD, h=l, center=center, $fn=12);
 }
-module shank(len) {
+module shank(len, stayAngle = stayAngle) {
     translate([0,2.5,0]) rotate([stayAngle,0,0]) {
         rotate([0,0,180/8]) cylinder(d1=wid, d2=(stayD + 3), h=len, center=false);
 
