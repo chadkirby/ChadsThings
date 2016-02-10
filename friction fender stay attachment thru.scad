@@ -1,9 +1,9 @@
-stayAngle = asin((150 - 60)/355); // rear
+stayAngle = asin(0.5*(165 - 60)/330); // rear
 //stayAngle = 0; // front*/
 $fs = 1;
 $fa = 6;
 
-len = 30;
+len = 25;
 wid = 10;
 //stayD = 4.7;
 stayD = 25.4/4;

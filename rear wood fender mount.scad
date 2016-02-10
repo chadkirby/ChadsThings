@@ -5,7 +5,7 @@ $fa = 6;
 fenderWidth = 53;
 fenderThick = 5.5;
 stayD = 25.4/4;
-stayAngle = asin((150 - 60)/355); // rear
+stayAngle = asin(0.5*(165 - 60)/330); // rear
 // stayAngle = 0; // front
 module fenderStay(dir=1) {
     #translate([0,8,0]) {
@@ -41,7 +41,7 @@ rotate([0,0,0]) difference() {
     // fender
     cube([fenderWidth, fenderThick, 25], center=true);
     // screws
-    for (xx=[-9.5:19:9.5]) {
+    for (xx=[-12.7:25.4:12.7]) {
         translate([xx,fenderThick/2 + 2.1,0]) rotate([-90,0,0]) cylinder(d=9.8, h=6, center=false);
         translate([xx, 0, 0]) {
             rotate([90,0,0]) cylinder(d=3.4, h=25, center=false, $fn=12);
