@@ -15,7 +15,13 @@ module squaredCircle(len, rot=[0,0,0], $fn=12) {
     }
 }
 module stayThru(l = len + 5, center=false, stayAngle = stayAngle) {
-    translate([0,2.5,0]) rotate([stayAngle,0,0]) translate([0, 0, -4]) cylinder(d=stayD, h=l, center=center, $fn=12);
+    translate([0,2.5,0]) rotate([stayAngle,0,0])  {
+        translate([0, 0, -1])
+        cylinder(d=stayD, h=l, center=center, $fn=12);
+
+        translate([0, 0, -4])
+        cylinder(d=stayD - 2, h=l + 2, center=center, $fn=12);
+    }
 }
 module shank(len, stayAngle = stayAngle) {
     translate([0,2.5,0]) rotate([stayAngle,0,0]) {
@@ -33,10 +39,12 @@ rotate([90 - stayAngle/2,0,0])
                 difference() {
                     hull() {
                         translate([0,-2,2]) shank(10);
-                        translate([0,-wid/4,-wid/2]) rotate([90,0,0]) cylinder(d=wid+4, h=wid/2, center=true);
+                        translate([0,-wid/4,-wid/2]) rotate([90,0,0]) cylinder(d=wid+6, h=wid/2, center=true);
                     }
                     translate([0,-wid/4,-wid/2]) rotate([90,0,0]) {
                         cylinder(d=6, h=25, center=true);
+
+                        translate([0,0,-1])
                         rotate([0,180,0]) cylinder(d=11, h=wid, center=false);
                     }
                 }
