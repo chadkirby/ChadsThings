@@ -24,13 +24,22 @@ module moveToStay(ii) {
 
 rotate([0,0,0]) difference() {
     union() {
-        hull() {
-            translate([0, -1]) cube([fenderWidth+2, fenderThick+6, 12], center=true);
-            for (ii=[-1:2:1]) {
-                stay(ii = ii, len = 6);
+        difference() {
+            hull() {
+                translate([0, -1]) cube([fenderWidth+2, fenderThick+6, 12], center=true);
+                #for (ii=[-1, 1]) {
+                    stay(ii = ii, len = 15);
+                }
+            }
+            hull() {
+                for (xx=[-fenderWidth/2 + 10, fenderWidth/2 - 10]) {
+                    translate([xx, -fenderThick - 16])
+                    cylinder(r=15, h=100, center=true);
+
+                }
             }
         }
-        for (ii=[-1:2:1]) {
+        for (ii=[-1, 1]) {
             stay(ii = ii);
         }
     }
